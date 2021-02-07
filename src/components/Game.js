@@ -24,12 +24,12 @@ const Game = ({ name, released, image, id, genres }) => {
     >
       <Link to={`/game/${id}`}>
         <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
-        <div className="genres">
+        {/* <div className="genres">
           <p>Genre:</p>
           {genres.map((genre) => (
             <p key={genre.id}>{genre.name}</p>
           ))}
-        </div>
+        </div> */}
         <p>Release Date: {released}</p>
         <motion.img
           layoutId={`image ${stringPathId}`}
