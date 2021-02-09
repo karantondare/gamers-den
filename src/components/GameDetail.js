@@ -61,6 +61,7 @@ const GameDetail = ({ pathId }) => {
   };
 
   const { game, screen, isLoading } = useSelector((state) => state.detail);
+
   return (
     <>
       {!isLoading && (
@@ -69,10 +70,16 @@ const GameDetail = ({ pathId }) => {
             <Stats>
               <div className="rating">
                 <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
-                <p>Rating: {game.rating}</p>
+                <p>Rating: </p>
                 {getStars()}
               </div>
               <Info>
+                <Genres>
+                  <p>Genre:</p>
+                  {game.genres.map((genre) => (
+                    <p key={genre.id}>{genre.name}</p>
+                  ))}
+                </Genres>
                 <h3>Platforms</h3>
                 <Platforms>
                   {game.platforms.map((data) => (
@@ -83,6 +90,12 @@ const GameDetail = ({ pathId }) => {
                     />
                   ))}
                 </Platforms>
+                {/* <Developers>
+                  <p>Developed by </p>
+                  {game.developers.map((developer) => (
+                    <p>{developer}</p>
+                  ))}
+                </Developers> */}
               </Info>
             </Stats>
             <Media>
@@ -130,6 +143,11 @@ const CardShadow = styled(motion.div)`
   &::-webkit-scrollbar-track {
     background: white;
   }
+
+  /* @media (max-width: 800px) {
+    padding: 3rem 0;
+    width: 70%;
+  } */
 `;
 
 const Detail = styled(motion.div)`
@@ -176,6 +194,26 @@ const Media = styled(motion.div)`
 
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
+`;
+
+const Genres = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  p {
+    color: #14919b;
+    margin-left: 0.5rem;
+  }
+`;
+
+const Developers = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  p {
+    color: #14919b;
+    margin-left: 0.5rem;
+  }
 `;
 
 export default GameDetail;

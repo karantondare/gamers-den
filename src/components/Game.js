@@ -24,18 +24,9 @@ const Game = ({ name, released, image, id, genres }) => {
     >
       <Link to={`/game/${id}`}>
         <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
-        {/* <div className="genres">
-          <p>Genre:</p>
-          {genres.map((genre) => (
-            <p key={genre.id}>{genre.name}</p>
-          ))}
-        </div> */}
+
         <p>Release Date: {released}</p>
-        <motion.img
-          layoutId={`image ${stringPathId}`}
-          src={smallImage(image, 640)}
-          alt={name}
-        />
+        <motion.img layoutId={`image ${stringPathId}`} src={image} alt={name} />
       </Link>
     </StyledGame>
   );
@@ -53,14 +44,6 @@ const StyledGame = styled(motion.div)`
     width: 100%;
     height: 40vh;
     object-fit: cover;
-  }
-  .genres {
-    display: flex;
-    justify-content: center;
-  }
-  .genres p {
-    color: #14919b;
-    margin-left: 0.5rem;
   }
 `;
 
