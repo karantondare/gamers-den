@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { smallImage } from "../utlis";
+// import { smallImage } from "../utlis";
 
 import playstation from "../img/playstation.svg";
 import steam from "../img/steam.svg";
@@ -101,7 +101,7 @@ const GameDetail = ({ pathId }) => {
             <Media>
               <motion.img
                 layoutId={`image ${pathId}`}
-                src={smallImage(game.background_image, 1280)}
+                src={game.background_image}
                 alt={game.background_image}
               />
             </Media>
@@ -110,11 +110,7 @@ const GameDetail = ({ pathId }) => {
             </Description>
             <div className="gallery">
               {screen.results.map((screen) => (
-                <img
-                  src={smallImage(screen.image, 1280)}
-                  alt={game.name}
-                  key={screen.id}
-                />
+                <img src={screen.image} alt={game.name} key={screen.id} />
               ))}
             </div>
           </Detail>
@@ -206,14 +202,14 @@ const Genres = styled(motion.div)`
   }
 `;
 
-const Developers = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-  p {
-    color: #14919b;
-    margin-left: 0.5rem;
-  }
-`;
+// const Developers = styled(motion.div)`
+//   display: flex;
+//   justify-content: center;
+//   margin: 10px;
+//   p {
+//     color: #14919b;
+//     margin-left: 0.5rem;
+//   }
+// `;
 
 export default GameDetail;
