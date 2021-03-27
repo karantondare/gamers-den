@@ -8,13 +8,7 @@ const Game = ({ gameData }) => {
       <div className="flex">
         <div>
           <h3>{gameData.name}</h3>
-          <p>
-            {gameData.released}
-            <p>Available on : </p>
-            {gameData.platforms.map((platform, index) => (
-              <span>{platform.platform.name}, </span>
-            ))}
-          </p>
+          <p>{gameData.released}</p>
           <p>
             Rating: <span>{gameData.rating}</span>
           </p>
@@ -45,6 +39,7 @@ const StyledGame = styled(motion.div)`
 
   h3 {
     padding: 0.5rem;
+    color: rgb(96, 165, 250);
   }
   img {
     width: 100%;

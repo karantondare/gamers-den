@@ -9,7 +9,7 @@ import Footer from "./Footer";
 import Loading from "./Loading";
 
 const Home = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const { popularGames, newGames, upcomingGames } = useSelector(
     (state) => state.games
@@ -36,7 +36,6 @@ const Home = () => {
       <GameList>
         {selectedOption === "Popular" && (
           <>
-            <h2>Popular Games</h2>
             <Games>
               {popularGames.map((popularGame) => (
                 <Game key={popularGame.id} gameData={popularGame} />
@@ -47,7 +46,6 @@ const Home = () => {
 
         {selectedOption === "Upcoming" && (
           <>
-            <h2>Upcoming Games</h2>
             <Games>
               {upcomingGames.map((upcomingGame) => (
                 <Game key={upcomingGame.id} gameData={upcomingGame} />
@@ -58,7 +56,6 @@ const Home = () => {
 
         {selectedOption === "Latest Released" && (
           <>
-            <h2>Latest Released</h2>
             <Games>
               {newGames.map((newGame) => (
                 <Game key={newGame.id} gameData={newGame} />
@@ -76,6 +73,7 @@ const GameList = styled(motion.div)`
   background-color: rgba(191, 219, 254);
   padding: 0rem 5rem;
   padding-bottom: 4rem;
+  padding-top: 4rem;
   h2 {
     padding: 2rem 0rem;
     margin: 0 auto;
