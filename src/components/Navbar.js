@@ -5,7 +5,7 @@ import { fetchGames } from "../actions/gamesActions";
 import logo from "../assets/logo.svg";
 
 const Navbar = ({ selectedOption, updateSelectedOption }) => {
-  const options = ["Popular", "Upcoming", "Latest Released"];
+  const options = ["Popular", "Latest Released", "Upcoming"];
   const dispatch = useDispatch();
 
   useEffect(() => {

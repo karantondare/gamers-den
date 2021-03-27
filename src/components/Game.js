@@ -8,10 +8,13 @@ const Game = ({ gameData }) => {
       <div className="flex">
         <div>
           <h3>{gameData.name}</h3>
-          <p>{gameData.released}</p>
-          {gameData.platforms.map((platform) => (
-            <p>{platform.name}</p>
-          ))}
+          <p>
+            {gameData.released}
+            <p>Available on : </p>
+            {gameData.platforms.map((platform, index) => (
+              <span>{platform.platform.name}, </span>
+            ))}
+          </p>
           <p>
             Rating: <span>{gameData.rating}</span>
           </p>
