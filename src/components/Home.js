@@ -6,8 +6,10 @@ import { fetchGames } from "../actions/gamesActions";
 import Game from "./Game";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Loading from "./Loading";
 
 const Home = () => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { popularGames, newGames, upcomingGames } = useSelector(
     (state) => state.games
@@ -19,7 +21,9 @@ const Home = () => {
   }
 
   useEffect(() => {
+    setLoading(true);
     dispatch(fetchGames());
+    setLoading(false);
   }, [dispatch]);
 
   return (
@@ -28,6 +32,7 @@ const Home = () => {
         selectedOption={selectedOption}
         updateSelectedOption={updateSelectedOption}
       />
+      {loading && <Loading />}
       <GameList>
         {selectedOption === "Popular" && (
           <>
