@@ -1,17 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { fetchGameDetails } from "../actions/gameDetialActions";
+import { Link } from "react-router-dom";
 
 const Game = ({ gameData }) => {
+  const dispatch = useDispatch();
+
+  const getGameDetails = () => {
+    dispatch(fetchGameDetails(gameData.id));
+  };
+
   return (
-    <StyledGame>
+    <StyledGame onClick={getGameDetails}>
       <div className="flex">
         <div>
-          <h3>{gameData.name}</h3>
-          <p>{gameData.released}</p>
-          <p>
-            Rating: <span>{gameData.rating}</span>
-          </p>
+          <Link to={`/${gameData.id}`}>
+            <h3>{gameData.name}</h3>
+            <p>{gameData.released}</p>
+            <p>
+              Rating: <span>{gameData.rating}</span>
+            </p>
+          </Link>
         </div>
         <div>
           <img src={gameData.background_image} alt={gameData.name} />

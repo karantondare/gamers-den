@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import GlobalStyles from "./styles/GlobalStyles";
+import GameDetails from "./components/GameDetails";
 
 function App() {
   return (
@@ -9,9 +10,12 @@ function App() {
       <Router>
         <GlobalStyles />
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
+          <Route path="/:id">
+            <GameDetails />
+          </Route> 
         </Switch>
       </Router>
     </div>

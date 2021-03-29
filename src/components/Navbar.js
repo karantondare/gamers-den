@@ -14,7 +14,7 @@ const Navbar = ({ selectedOption, updateSelectedOption }) => {
 
   return (
     <div className="flex justify-around p-4 bg-blue-300">
-      <Link to="/" onClick={() => updateSelectedOption("Popular")}>
+      <Link to="/">
         <img className="h-20" src={logo} alt="logo" />
       </Link>
 
