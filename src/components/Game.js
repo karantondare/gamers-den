@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchGameDetails } from "../actions/gameDetialActions";
-import { Link } from "react-router-dom";
 
 const Game = ({ gameData }) => {
   const dispatch = useDispatch();
-
   const getGameDetails = () => {
     dispatch(fetchGameDetails(gameData.id));
   };

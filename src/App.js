@@ -15,7 +15,7 @@ function App() {
           </Route>
           <Route path="/:id">
             <GameDetails />
-          </Route> 
+          </Route>
         </Switch>
       </Router>
     </div>
