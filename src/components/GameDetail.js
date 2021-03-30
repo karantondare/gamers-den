@@ -25,6 +25,7 @@ const GameDetail = () => {
 
   useEffect(() => {
     func();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getStars = () => {

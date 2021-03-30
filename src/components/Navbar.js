@@ -17,7 +17,7 @@ const Navbar = ({ selectedOption, setSelectedOption }) => {
   // }
 
   return (
-    <div className="flex justify-around p-4 bg-blue-300">
+    <div className="px-8 flex justify-between p-4 bg-blue-300">
       <Link to="/">
         <img className="h-20" src={logo} alt="logo" />
       </Link>

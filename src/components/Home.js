@@ -9,12 +9,12 @@ import Footer from "./Footer";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Home = () => {
+  const [selectedOption, setSelectedOption] = useState("Popular");
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const { popularGames, newGames, upcomingGames } = useSelector(
     (state) => state.games
   );
-  const [selectedOption, setSelectedOption] = useState("Popular");
 
   function updateSelectedOption(selectedOption) {
     setSelectedOption(selectedOption);
@@ -27,6 +27,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllGames();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
