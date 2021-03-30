@@ -6,13 +6,8 @@ import { useDispatch } from "react-redux";
 import { fetchGameDetails } from "../actions/gameDetialActions";
 
 const Game = ({ gameData }) => {
-  const dispatch = useDispatch();
-  const getGameDetails = () => {
-    dispatch(fetchGameDetails(gameData.id));
-  };
-
   return (
-    <StyledGame onClick={getGameDetails}>
+    <StyledGame>
       <div className="flex">
         <div>
           <Link to={`/${gameData.id}`}>

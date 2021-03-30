@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 import { fetchGames } from "../actions/gamesActions";
 import logo from "../assets/logo.svg";
 
-const Navbar = ({ selectedOption, updateSelectedOption }) => {
+const Navbar = ({ selectedOption, setSelectedOption }) => {
   const options = ["Popular", "Latest Released", "Upcoming"];
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchGames());
   }, [dispatch]);
+
+  // function updateSelectedOption(option) {
+  //   setSelectedOption(option);
+  // }
 
   return (
     <div className="flex justify-around p-4 bg-blue-300">
@@ -19,20 +23,22 @@ const Navbar = ({ selectedOption, updateSelectedOption }) => {
       </Link>
 
       <ul className="navbar flex ">
-        {options.map((option, index) => (
-          <li key={index} className=" text-2xl m-2">
-            <button
-              className="nav-button p-4 bg-primary text-white rounded-lg focus:outline-none"
-              style={
-                option === selectedOption
-                  ? { color: " rgba(147, 197, 253" }
-                  : null
-              }
-              onClick={() => updateSelectedOption(option)}
-            >
-              {option}
-            </button>
-          </li>
+        {options.map((option) => (
+          <Link to="/" key={option}>
+            <li className=" text-2xl m-2">
+              <button
+                className="nav-button p-4 bg-primary text-white rounded-lg focus:outline-none"
+                style={
+                  option === selectedOption
+                    ? { color: " rgba(147, 197, 253" }
+                    : null
+                }
+                onClick={() => setSelectedOption(option)}
+              >
+                {option}
+              </button>
+            </li>
+          </Link>
         ))}
       </ul>
     </div>

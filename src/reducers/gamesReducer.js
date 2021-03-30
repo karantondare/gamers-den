@@ -13,6 +13,10 @@ export const gamesReducer = (state = initialState, action) => {
         upcomingGames: action.payload.upcomingGames,
         newGames: action.payload.newGames,
       };
+    case "EMPTY":
+      return {
+        state: initialState,
+      };
     default:
       return { ...state };
   }

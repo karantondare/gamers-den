@@ -6,7 +6,7 @@ import { fetchGames } from "../actions/gamesActions";
 import Game from "./Game";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import Loading from "./Loading";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -15,15 +15,19 @@ const Home = () => {
     (state) => state.games
   );
   const [selectedOption, setSelectedOption] = useState("Popular");
+  console.log(loading);
 
   function updateSelectedOption(selectedOption) {
     setSelectedOption(selectedOption);
   }
 
-  useEffect(() => {
-    setLoading(true);
-    dispatch(fetchGames());
+  const getAllGames = async () => {
+    await dispatch(fetchGames());
     setLoading(false);
+  };
+
+  useEffect(() => {
+    getAllGames();
   }, [dispatch]);
 
   return (
@@ -31,8 +35,13 @@ const Home = () => {
       <Navbar
         selectedOption={selectedOption}
         updateSelectedOption={updateSelectedOption}
+        setSelectedOption={setSelectedOption}
       />
-      {loading && <Loading />}
+      {(loading || !popularGames || !newGames || !upcomingGames) && (
+        <div className="bg-blue-200 flex justify-center p-8">
+          <CircularProgress value={20} />
+        </div>
+      )}
       <GameList>
         {selectedOption === "Popular" && (
           <>
@@ -83,6 +92,7 @@ const GameList = styled(motion.div)`
   h3 {
     align-content: center;
   }
+
   @media (max-width: 818px) {
     h2 {
       padding: 2.5rem 0rem;

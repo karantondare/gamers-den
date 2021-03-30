@@ -10,19 +10,22 @@ import xbox from "../assets/xbox.svg";
 import nintendo from "../assets/nintendo.svg";
 import apple from "../assets/apple.svg";
 import gamepad from "../assets/gamepad.svg";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const GameDetail = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const params = useParams();
   const gameDetails = useSelector((state) => state.gameDetails.game);
-  console.log(gameDetails);
+
+  const func = async () => {
+    await dispatch(fetchGameDetails(params.id));
+    setLoading(false);
+  };
 
   useEffect(() => {
-    setLoading(true);
-    dispatch(fetchGameDetails(params.id));
-    setLoading(false);
-  }, [dispatch, params.id]);
+    func();
+  }, []);
 
   const getStars = () => {
     const stars = [];
@@ -55,39 +58,60 @@ const GameDetail = () => {
   };
 
   return (
-    <div className="bg-blue-200">
-      {loading && <h1>Loading...</h1>}
-      {!loading && (
-        <div className="">
-          <div className="flex justify-around items-center p-8">
-            <h1 className="text-5xl	">{gameDetails.name}</h1>
-            <div>
-              <p className="text-2xl	">Rating: {gameDetails.rating}</p>
-              <div className="flex justify-around items-center">
-                {getStars()}
+    <>
+      <div>{loading && <LinearProgress color="secondary" />}</div>
+      <div className="bg-blue-200">
+        {!loading && (
+          <div className="">
+            <div className="flex justify-around items-center p-8">
+              <h1 className="text-5xl	">{gameDetails.name}</h1>
+              <div>
+                <p className="text-2xl	">Rating: {gameDetails.rating}</p>
+                <div className="flex justify-around items-center">
+                  {getStars()}
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col	 justify-around items-center p-8">
+              <img src={gameDetails.background_image} alt={gameDetails.name} />
+              <p className="pt-8 w-10/12	content-start	">
+                {gameDetails.description_raw}
+              </p>
+            </div>
+            <div className="flex justify-center items-center pb-8">
+              <p className="text-2xl">Available for: </p>
+              {gameDetails.platforms.map((gameDetail) => (
+                <img
+                  className="p-4"
+                  alt={gameDetail.platform.name}
+                  key={gameDetail.platform.id}
+                  src={getPlatform(gameDetail.platform.name)}
+                ></img>
+              ))}
+            </div>
+            <div className="flex justify-around items-center pb-8">
+              <div>
+                {gameDetails.publishers.map((publisher, index) => (
+                  <h4 key={index} className="flex justify-center p-4 text-2xl">
+                    Publisher : {publisher.name}
+                  </h4>
+                ))}
+              </div>
+              <div className="flex justify-center items-center">
+                <p className="flex flex-col justify-center items-center  text-2xl text-black">
+                  Genre :
+                </p>
+                {gameDetails.genres.map((publisher, index) => (
+                  <span key={index} className="p-4 text-2xl">
+                    {publisher.name}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
-          <div className="flex flex-col	 justify-around items-center p-8">
-            <img src={gameDetails.background_image} alt={gameDetails.name} />
-            <p className="py-8 w-10/12	content-start	">
-              {gameDetails.description_raw}
-            </p>
-          </div>
-          <div className="flex justify-center items-center p-8">
-            <p className="text-2xl">Available for: </p>
-            {/* {gameDetails.platforms.map((gameDetail) => (
-              <img
-                className="p-4"
-                alt={gameDetail.platform.name}
-                key={gameDetail.platform.id}
-                src={getPlatform(gameDetail.platform.name)}
-              ></img>
-            ))} */}
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 
