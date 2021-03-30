@@ -15,7 +15,6 @@ const Home = () => {
     (state) => state.games
   );
   const [selectedOption, setSelectedOption] = useState("Popular");
-  console.log(loading);
 
   function updateSelectedOption(selectedOption) {
     setSelectedOption(selectedOption);
@@ -28,7 +27,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllGames();
-  }, [dispatch]);
+  }, []);
 
   return (
     <>

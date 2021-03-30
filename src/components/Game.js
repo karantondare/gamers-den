@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchGameDetails } from "../actions/gameDetialActions";
 
 const Game = ({ gameData }) => {
   return (
