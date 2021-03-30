@@ -12,12 +12,8 @@ const Navbar = ({ selectedOption, setSelectedOption }) => {
     dispatch(fetchGames());
   }, [dispatch]);
 
-  // function updateSelectedOption(option) {
-  //   setSelectedOption(option);
-  // }
-
   return (
-    <div className="px-8 flex justify-between p-4 bg-blue-300">
+    <div className="flex justify-between p-4 px-24 bg-blue-300">
       <Link to="/">
         <img className="h-20" src={logo} alt="logo" />
       </Link>
